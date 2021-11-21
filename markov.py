@@ -1,4 +1,6 @@
 import sys
+import json
+import os
 
 
 def main():
@@ -8,7 +10,7 @@ def main():
     if inputFile == "":
         # Interactive Mode
         while True:
-            userInput = raw_input(">> ")
+            userInput = input(">> ")
             if userInput == "":
                 break
 
@@ -47,7 +49,7 @@ def loadDictionary(filename):
 
 def learn(dict, input):
     tokens = input.split(" ")
-    for i in range(0, len(tokens -1):
+    for i in range(0, len(tokens)-1):
         currentWord = tokens[i]
         nextWord = tokens[i+1]
 
@@ -70,3 +72,7 @@ def updateFile(filename, dictionary):
     file = open(filename, "w")
     json.dump(dictionary, file)
     file.close()
+
+
+# Start the program
+main()
