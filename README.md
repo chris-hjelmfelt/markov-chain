@@ -1,9 +1,13 @@
 ### MARKOV CHAIN
 
-Run:   
-> python markov.py <dictonary file> <input file>   
-dictionary file and input file are optional
+Run setup:   
+> python set-markov.py <dictonary file> <input file>   
+dictionary file and input file are optional   
+
+Run to get some text:   
+> python get-markov.py <number>   
+where <number> is the number of words you would like it to print  
 
 
-This is from a tutorial by 0612:
+This was modified from a tutorial by 0612:
 https://www.youtube.com/watch?v=L97yQMT0jn8

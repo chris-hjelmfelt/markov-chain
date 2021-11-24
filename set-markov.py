@@ -1,7 +1,7 @@
 import sys
 import json
 import os
-
+import re
 
 def main():
     dictionaryFile, inputFile = readArguments()
@@ -13,12 +13,17 @@ def main():
             userInput = input(">> ")
             if userInput == "":
                 break
-
-            dictionary = learn(dictionary, userInput)
+            newText = cleanString(userInput)
+            dictionary = learn(dictionary, newText)
             updateFile(dictionaryFile, dictionary)
     else:
         # Read from File
-        print("Not yet implemented")
+        f = open(inputFile, "r", encoding='utf-8')
+        fileInput = f.read()         
+        f.close()
+        newText = cleanString(fileInput)  
+        dictionary = learn(dictionary, newText)
+        updateFile(dictionaryFile, dictionary)
 
 
 
@@ -33,6 +38,13 @@ def readArguments():
         inputFile = sys.argv[2]
 
     return dictionaryFile, inputFile
+
+
+# Clean up the string - keep only alpha numeric and spaces
+def cleanString(inputString):
+  txt = inputString.replace('\n', ' ')
+  newText = re.sub('[^0-9a-zA-Z\s]+', '', txt)
+  return newText
 
 
 def loadDictionary(filename):
